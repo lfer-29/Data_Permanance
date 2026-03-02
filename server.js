@@ -1,5 +1,8 @@
 const express = require('express');
+const nedb = require("nedb-promises");
+
 const app = express();
+const db = nedb.create('db.jsonl');
 
 app.use(express .static('public'));
 const hits = {
@@ -13,4 +16,4 @@ app.get('/hits/:page', (req,res)=>{
   hits[page]++;
   res.json({count: hits[page]});
 });
-app.listen(3000);
+app.listen(3000, ()=>console.log('server started...'));
